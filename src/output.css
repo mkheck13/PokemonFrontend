@@ -544,6 +544,9 @@
   .z-10 {
     z-index: 10;
   }
+  .clear-both {
+    clear: both;
+  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -631,20 +634,11 @@
   .h-7 {
     height: calc(var(--spacing) * 7);
   }
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
   .h-10 {
     height: calc(var(--spacing) * 10);
-  }
-  .h-24 {
-    height: calc(var(--spacing) * 24);
-  }
-  .h-96 {
-    height: calc(var(--spacing) * 96);
-  }
-  .h-100 {
-    height: calc(var(--spacing) * 100);
-  }
-  .h-12 {
-    height: calc(var(--spacing) * 12);
   }
   .h-16 {
     height: calc(var(--spacing) * 16);
@@ -655,11 +649,50 @@
   .h-40 {
     height: calc(var(--spacing) * 40);
   }
+  .h-48 {
+    height: calc(var(--spacing) * 48);
+  }
   .h-50 {
     height: calc(var(--spacing) * 50);
   }
+  .h-52 {
+    height: calc(var(--spacing) * 52);
+  }
+  .h-100 {
+    height: calc(var(--spacing) * 100);
+  }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
+  .h-24 {
+    height: calc(var(--spacing) * 24);
+  }
+  .h-96 {
+    height: calc(var(--spacing) * 96);
+  }
   .h-auto {
     height: auto;
+  }
+  .max-h-5 {
+    max-height: calc(var(--spacing) * 5);
+  }
+  .max-h-7 {
+    max-height: calc(var(--spacing) * 7);
+  }
+  .max-h-10 {
+    max-height: calc(var(--spacing) * 10);
+  }
+  .max-h-50 {
+    max-height: calc(var(--spacing) * 50);
+  }
+  .max-h-56 {
+    max-height: calc(var(--spacing) * 56);
+  }
+  .max-h-72 {
+    max-height: calc(var(--spacing) * 72);
+  }
+  .max-h-100 {
+    max-height: calc(var(--spacing) * 100);
   }
   .w-3 {
     width: calc(var(--spacing) * 3);
@@ -685,6 +718,9 @@
   .w-50 {
     width: calc(var(--spacing) * 50);
   }
+  .w-96 {
+    width: calc(var(--spacing) * 96);
+  }
   .w-\[\%\] {
     width: %;
   }
@@ -699,6 +735,9 @@
   }
   .w-\[75\%\] {
     width: 75%;
+  }
+  .w-auto {
+    width: auto;
   }
   .w-full {
     width: 100%;
@@ -764,6 +803,15 @@
     :where(& > :not(:last-child)) {
       border-color: var(--color-gray-100);
     }
+  }
+  .overflow-scroll {
+    overflow: scroll;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  .overflow-y-scroll {
+    overflow-y: scroll;
   }
   .rounded-full {
     border-radius: calc(infinity * 1px);
@@ -928,6 +976,9 @@
   }
   .text-cyan-700 {
     color: var(--color-cyan-700);
+  }
+  .text-cyan-800 {
+    color: var(--color-cyan-800);
   }
   .text-gray-500 {
     color: var(--color-gray-500);

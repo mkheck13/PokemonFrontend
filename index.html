@@ -41,11 +41,11 @@
                     class="font-extrabold text-2xl">#</span>
             </div>
             <div class="flex justify-center py-5">
-                <img id="pokeImage" src="" alt="pokemon image">
+                <img id="pokeImage" class="h-48" src="" alt="pokemon image">
             </div>
             <div class="flex justify-end">
                 <button id="shinyBtn" class="pb-5"">
-                    <img src=" ./assets/Sparkle.png" alt="shiny icon">
+                    <img id="sparkleIcon" src=" ./assets/Sparkle.png" alt="shiny icon">
                 </button>
             </div>
         </section>
@@ -59,8 +59,42 @@
 
 
         <!-- Type, Location, Abilities, Moves, Evolution start-->
-        <section>
-            <h1 class="text-cyan-700">haerasdf</h1>
+        <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg">
+            <!-- Type -->
+            <div>
+                <h1 class="px-5 font-extrabold text-2xl">Type:</h1>
+                <h1 id="pokeType" class="px-5 font-extrabold text-2xl">N/A</h1>
+            </div>
+
+            <!-- Location -->
+            <div>
+                <h1 class="px-5 font-extrabold text-2xl">Location:</h1>
+                <h1 id="pokeLocation" class="px-5 font-extrabold text-2xl">N/A</h1>
+            </div>
+
+            <!-- Abilities -->
+            <div>
+                <h1 class="px-5 font-extrabold text-2xl">Abilities:</h1>
+                <h1 id="pokeAbilities" class="px-5 font-extrabold text-2xl">N/A</h1>
+            </div>
+
+            <!-- Moves -->
+            <div>
+                <h1 class="px-5 font-extrabold text-2xl">Moves:</h1>
+                <h1 id="pokeMoves" class="px-5 font-extrabold text-2xl overflow-scroll max-h-72">N/A</h1>
+            </div>
+
+            <!-- Evolution -->
+            <div>
+                <h1 class="px-5 font-extrabold text-2xl">Evolution:</h1>
+                <h1 id="pokeEvo" class="px-5 font-extrabold text-2xl">N/A</h1>
+            </div>
+
+
+
+
+
+            
         </section>
         <!-- Type, Location, Abilities, Moves, Evolution end-->
     </main>
