@@ -1,5 +1,7 @@
 
 // Variables
+// let data;
+
 
 // Background Change
 let backgroundChange = document.getElementById('backgroundChange');
@@ -18,31 +20,33 @@ let shinyBtn = document.getElementById('shinyBtn');
 
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', async function () {
-    await PokemonApi(1);
-    current
-});
+// document.addEventListener('DOMContentLoaded', async function () {
+//     await PokemonApi('pikachu');
+    
+// });
 
 // Input Field
 
 
 
 // Search Button
+// searchBtn.addEventListener('click', async () => {
+
+//     await PokemonApi(inputField.value.toLowerCase());
+
+//     popultePokemon();
+// });
 
 
 
 // Random Button
+// randomBtn.addEventListener('click', async () => {
+//     let randomId = Math.floor(Math.random() * 650);
+//     await PokemonApi(randomId);
+//     popultePokemon();
 
+// })
 
-
-// Favourite Button
-
-
-// Shiny Button
-
-
-
-// Functions
 
 
 // Fetch Pokemon
@@ -50,31 +54,15 @@ const PokemonApi = async (pokemon) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     const data = await promise.json();
 
-    pokemonName.textContent = data.name;
-
-    pokeId.textContent = data.id.toString().padStart(3, '0');
-
-    pokeImage.src = data.sptites.other["official-artwork"].front_default;
+    pokemonName.innerText = data.name;
 
     return data;
-
 };
 
+searchBtn.addEventListener('click', () => {
+    PokemonApi(pokemon.value.toLowerCase());
+})
 
 
 
-
-// Fetch Random Pokemon
-
-
-// Fetch Shiny Pokemon
-
-
-// Fetch Favourite Pokemon
-
-
-// Fetch Pokemon By Name
-
-
-// Fetch Pokemon By ID
 
