@@ -1,0 +1,34 @@
+
+// Save to local storage.
+const SaveToLocal = (userSearch) => {
+
+    let favorites = GetLocal();
+
+    if(!favorites.includes(userSearch)){
+        favorites.push(userSearch);
+    }
+
+    localStorage.setItem("favorited", JSON.stringify(favorites));
+};
+
+// Get from local storage. If there is no data in it, return empty array.
+const GetLocal = () => {
+    let localStorageData = localStorage.getItem("favorited");
+
+    if(localStorageData === null){
+        return [];
+    }
+    return JSON.parse(localStorageData);
+};
+
+
+// Remove from local storage.
+const RemoveFromLocal = (userSearch) => {
+    let favorites = GetLocal();
+    let pokeIndex = favorites.indexOf(userSearch);
+    favorites.splice(pokeIndex, 1);
+    localStorage.setItem("favorited", JSON.stringify(favorites));
+
+};
+
+export { SaveToLocal, GetLocal, RemoveFromLocal };

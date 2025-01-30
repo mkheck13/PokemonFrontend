@@ -24,7 +24,7 @@ let favIcon = document.getElementById('favIcon');
 let shinyBtn = document.getElementById('shinyBtn');
 let sparkleIcon = document.getElementById('sparkleIcon');
 
-// let shiny;
+let shiny = false;
 
 // let userSearch = "mew";
 
@@ -33,63 +33,84 @@ let sparkleIcon = document.getElementById('sparkleIcon');
 
 // Search Button
 searchBtn.addEventListener('click', async () => {
-    
-    userSearch = inputField.value.toLowerCase();
-    let pokeData = await PokemonApi(userSearch);
 
-    if(pokeData.id < 650){
+    try {
 
-         
-    // Console Logs
-    console.log(pokeData.name);
-    console.log(pokeData.id);
-    console.log(pokeData.types.map(type => type.type.name));
-    console.log(pokeData.abilities.map(ability => ability.ability.name));
+        userSearch = inputField.value.toLowerCase();
+        let pokeData = await PokemonApi(userSearch);
 
-    // name
-    pokeName.textContent = `${pokeData.name}`;
+        if (pokeData.id < 650) {
 
-    // Id
-    pokeId.textContent = `# ${pokeData.id}`;
+            // Console Logs
+            // console.log(pokeData.name);
+            // console.log(pokeData.id);
+            // console.log(pokeData.types.map(type => type.type.name));
+            // console.log(pokeData.abilities.map(ability => ability.ability.name));
 
-    // Image
-    pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+            // name
+            pokeName.textContent = `${pokeData.name}`;
 
-    // Type
-    const typeArray = pokeData.types.map(type => type.type.name);
-    pokeType.textContent = `Type: ${typeArray.join(', ')}`;
+            // Id
+            pokeId.textContent = `# ${pokeData.id}`;
 
-    // Location
-    const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}/encounters`);
-    const location = await locationData.json();
-    console.log(location);
+            // Image
+            pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
 
-    if(location.length > 0){
-        let randomLocation = Math.floor(Math.random() * location.length);
-        pokeLocation.textContent = `Location: ${(location[randomLocation].location_area.name).replaceAll("-", " ")}`;
-    }else{
-        pokeLocation.textContent = "Location: N/A";
-    }
+            // Type
+            const typeArray = pokeData.types.map(type => type.type.name);
+            pokeType.textContent = `Type: ${typeArray.join(', ')}`;
 
-    // Abilities
-    const abilityArray = pokeData.abilities.map(ability => ability.ability.name);
-    pokeAbilities.textContent = `Abilities: ${abilityArray.join(', ')}`;
+            // Location
+            const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}/encounters`);
+            const location = await locationData.json();
+            // console.log(location);
 
-    // Moves
-    const movesArray = pokeData.moves.map(move => move.move.name);
-    pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
+            if (location.length > 0) {
+                let randomLocation = Math.floor(Math.random() * location.length);
+                pokeLocation.textContent = `Location: ${(location[randomLocation].location_area.name).replaceAll("-", " ")}`;
+            } else {
+                pokeLocation.textContent = "Location: N/A";
+            }
 
-    }else{
+            // Abilities
+            const abilityArray = pokeData.abilities.map(ability => ability.ability.name);
+            pokeAbilities.textContent = `Abilities: ${abilityArray.join(', ')}`;
+
+            // Moves
+            const movesArray = pokeData.moves.map(move => move.move.name);
+            pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
+
+
+            // Shiny Button NEEDS WORK!!!
+            // shinyBtn.addEventListener('click', async () => {
+            //     console.log("shiny button clicked");
+
+            //     if (shiny) {
+            //         pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
+            //     } else {
+            //         pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+            //     }
+            //     shiny = !shiny;
+            // });
+
+
+
+
+        } else {
+            alert("Please enter a valid Pokemon name or ID. Gen 1-5 / ID 1-649");
+        }
+
+    } catch (error) {
         alert("Please enter a valid Pokemon name or ID. Gen 1-5 / ID 1-649");
+        inputField.value = "";
     }
 
-  
 });
 
 
 // Random Button
 randomBtn.addEventListener('click', async () => {
-   
+
     let randomNum = Math.floor(Math.random() * 650);
     let pokeData = await PokemonApi(randomNum);
 
@@ -102,44 +123,55 @@ randomBtn.addEventListener('click', async () => {
     // Image
     pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
 
-   // Type
-   const typeArray = pokeData.types.map(type => type.type.name);
-   pokeType.textContent = `${typeArray.join(', ')}`;
+    // Type
+    const typeArray = pokeData.types.map(type => type.type.name);
+    pokeType.textContent = `${typeArray.join(', ')}`;
 
-   // Location
-   const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNum}/encounters`);
-   const location = await locationData.json();
-   console.log(location);
+    // Location
+    const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNum}/encounters`);
+    const location = await locationData.json();
+    //    console.log(location);
 
-   if(location.length > 0){
-       let randomLocation = Math.floor(Math.random() * location.length);
-       pokeLocation.textContent = `${(location[randomLocation].location_area.name).replaceAll("-", " ")}`;
-   }else{
-       pokeLocation.textContent = "N/A";
-   }
+    if (location.length > 0) {
+        let randomLocation = Math.floor(Math.random() * location.length);
+        pokeLocation.textContent = `${(location[randomLocation].location_area.name).replaceAll("-", " ")}`;
+    } else {
+        pokeLocation.textContent = "N/A";
+    }
 
-   // Abilities
-   const abilityArray = pokeData.abilities.map(ability => ability.ability.name);
-   pokeAbilities.textContent = `${abilityArray.join(', ')}`;
+    // Abilities
+    const abilityArray = pokeData.abilities.map(ability => ability.ability.name);
+    pokeAbilities.textContent = `${abilityArray.join(', ')}`;
 
-   // Moves
-   const movesArray = pokeData.moves.map(move => move.move.name);
-   pokeMoves.textContent = `${movesArray.join(', ')}`;
+    // Moves
+    const movesArray = pokeData.moves.map(move => move.move.name);
+    pokeMoves.textContent = `${movesArray.join(', ')}`;
+
+    // Shiny Button NEEDS WORK!!!
+    shinyBtn.addEventListener('click', async () => {
+        console.log("shiny button clicked");
+
+        if (shiny) {
+            pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
+        } else {
+            pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+        }
+        shiny = !shiny;
+    });
 
 });
 
 // Shiny Button NEEDS WORK!!!
-shinyBtn.addEventListener('click', async () => {
-    if(pokeImage.src == pokeData.sprites.other['official-artwork'].front_default){
-        sparkleIcon.src = "./assets/SparkleFilled.png";
-        pokeImage.src = pokeData.sprites.other['official-artwork'].front_shiny;
-        console.log("shiny");
-    }else{
-        sparkleIcon.src = "./assets/Sparkle.png";
-        pokeImage.src = pokeData.sprites.other['official-artwork'].front_default;
-        console.log("normal");
-    }
-});
+// shinyBtn.addEventListener('click', async () => {
+//     console.log("shiny button clicked");
+
+//     if(shiny){
+//         pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
+//     }else{
+//         pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+//     }
+//     shiny = !shiny;
+// });
 
 // Fetch Pokemon Data
 const PokemonApi = async (userSearch) => {
@@ -153,15 +185,15 @@ const PokemonApi = async (userSearch) => {
     const evoChain = await fetch(`${evoData.evolution_chain.url}`);
     const evoChainData = await evoChain.json();
 
-    if(evoChainData.chain.evolves_to.length === 0){
+    if (evoChainData.chain.evolves_to.length === 0) {
         pokeEvo.textContent = "No Evolutions";
-    }else{
+    } else {
         const evoArray = [evoChainData.chain.species.name];
 
         const seeEvo = chain => {
-            if(chain.evolves_to.length === 0){
+            if (chain.evolves_to.length === 0) {
                 return;
-            }else{
+            } else {
                 chain.evolves_to.forEach(evo => {
                     evoArray.push(evo.species.name);
                     seeEvo(evo);

@@ -2,117 +2,103 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/output.css">
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
-    <title>Pokemon Api</title>
-    <link rel="shortcut icon" href="./assets/pichu.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/output.css" />
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+  <title>Pokemon Api</title>
+  <link rel="shortcut icon" href="./assets/pichu.png" type="image/x-icon" />
 </head>
 
 <body id="backgroundChange" class="bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
-    <!-- Logo start -->
-    <header>
-        <img src="./assets/pokedox.png" alt="pokedox logo" class="w-50 h-50 mx-auto">
-    </header>
-    <!-- logo end -->
+  <!-- Logo start -->
+  <header>
+    <img src="./assets/pokedox.png" alt="pokedox logo" class="w-50 h-50 mx-auto" />
+  </header>
+  <!-- logo end -->
 
-    <!--  -->
-    <main class="grid grid-cols-4 gap-5 ml-5 mt-10">
-        <!-- search bar, image, name, favorite button, shiny button start -->
-        <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg">
-            <div class="bg-white bg-opacity-50 flex w-[100%] h-16 sm:h-14 items-center rounded-lg">
-                <button id="searchBtn" class="px-1 py-1">
-                    <img class="h-7" src="./assets/faSearch.png" alt="search icon">
-                </button>
-                <input id="inputField"
-                    class="text-l font-medium border-none w-full flex-1 px-4 bg-transparent outline-none" type="text"
-                    placeholder="Pokémon name / number">
+  <!--  -->
+  <main class="grid lg:grid-cols-2 gap-10 m-10 md:grid-cols-1">
+    <!-- search bar, image, name, favorite button, shiny button start -->
+    <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg p-10 md:min-w-10">
+      <div class="bg-white bg-opacity-50 flex w-[100%] h-16 sm:h-14 items-center rounded-lg mb-5">
+        <button id="searchBtn" class="px-1 py-1">
+          <img class="h-7" src="./assets/faSearch.png" alt="search icon" />
+        </button>
+        <input id="inputField" class="text-l font-medium border-none w-full flex-1 px-4 bg-transparent outline-none"
+          type="text" placeholder="Pokémon name / number" />
 
-                <button id="randomBtn" class="mx-2 lg:mx-1 xl:mx-2 px-1 py-1">
-                    <img class="h-7" src="./assets/faRandom.png" alt="random icon">
-                </button>
-            </div>
-            <div class="flex justify-center">
-                <button id="favIcon" class="h-7">
-                    <img class="h-10" src="./assets/HeartEmpty.png" alt="heart icon">
-                </button>
-                <h1 id="pokeName" class="px-5 font-extrabold text-2xl"></h1><span id="pokeId"
-                    class="font-extrabold text-2xl">#</span>
-            </div>
-            <div class="flex justify-center py-5">
-                <img id="pokeImage" class="h-48" src="" alt="pokemon image">
-            </div>
-            <div class="flex justify-end">
-                <button id="shinyBtn" class="pb-5"">
-                    <img id="sparkleIcon" src=" ./assets/Sparkle.png" alt="shiny icon">
-                </button>
-            </div>
-        </section>
+        <button id="randomBtn" class="mx-2 lg:mx-1 xl:mx-2 px-1 py-1">
+          <img class="h-7" src="./assets/faRandom.png" alt="random icon" />
+        </button>
+      </div>
+      <div class="flex justify-center">
+        <button id="favIcon" class="h-7">
+          <img class="h-10" src="./assets/HeartEmpty.png" alt="heart icon" />
+        </button>
+        <h1 id="pokeName" class="px-5 font-extrabold text-2xl"></h1>
+        <span id="pokeId" class="font-extrabold text-2xl">#</span>
+      </div>
+      <div class="flex justify-center py-5 mt-12">
+        <img id="pokeImage" class="h-full" src="" alt="pokemon image" />
+      </div>
+      <div class="flex justify-between items-end mt-32">
+        <!-- Modal toggle -->
+        <!-- <button id="favBtn" data-modal-target="default-modal" data-modal-toggle="default-modal"
+          class="block text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+          type="button">
+          Favorites
+        </button> -->
 
-        <!-- search bar, image, name, favorite button, shiny button end -->
+        <button id="shinyBtn" class="pb-5">
+          <img id=" sparkleIcon" src=" ./assets/Sparkle.png" alt="shiny icon" />
+        </button>
+      </div>
+    </section>
 
+    <!-- search bar, image, name, favorite button, shiny button end -->
 
+    <!-- Type, Location, Abilities, Moves, Evolution start-->
+    <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg p-10">
+      <!-- Type -->
+      <div>
+        <h1 class="px-5 font-extrabold text-2xl">Type:</h1>
+        <h1 id="pokeType" class="px-5 font-extrabold text-2xl">N/A</h1>
+      </div>
 
+      <!-- Location -->
+      <div class="mt-7">
+        <h1 class="px-5 font-extrabold text-2xl">Location:</h1>
+        <h1 id="pokeLocation" class="px-5 font-extrabold text-2xl">N/A</h1>
+      </div>
 
+      <!-- Abilities -->
+      <div class="mt-7">
+        <h1 class="px-5 font-extrabold text-2xl">Abilities:</h1>
+        <h1 id="pokeAbilities" class="px-5 font-extrabold text-2xl">N/A</h1>
+      </div>
 
+      <!-- Moves -->
+      <div class="mt-7">
+        <h1 class="px-5 font-extrabold text-2xl">Moves:</h1>
+        <h1 id="pokeMoves" class="px-5 font-extrabold text-2xl overflow-y-scroll max-h-72">
+          N/A
+        </h1>
+      </div>
 
-
-        <!-- Type, Location, Abilities, Moves, Evolution start-->
-        <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg">
-            <!-- Type -->
-            <div>
-                <h1 class="px-5 font-extrabold text-2xl">Type:</h1>
-                <h1 id="pokeType" class="px-5 font-extrabold text-2xl">N/A</h1>
-            </div>
-
-            <!-- Location -->
-            <div class="mt-7">
-                <h1 class="px-5 font-extrabold text-2xl">Location:</h1>
-                <h1 id="pokeLocation" class="px-5 font-extrabold text-2xl">N/A</h1>
-            </div>
-
-            <!-- Abilities -->
-            <div class="mt-7">
-                <h1 class="px-5 font-extrabold text-2xl">Abilities:</h1>
-                <h1 id="pokeAbilities" class="px-5 font-extrabold text-2xl">N/A</h1>
-            </div>
-
-            <!-- Moves -->
-            <div class="mt-7">
-                <h1 class="px-5 font-extrabold text-2xl">Moves:</h1>
-                <h1 id="pokeMoves" class="px-5 font-extrabold text-2xl overflow-y-scroll max-h-72">N/A</h1>
-            </div>
-
-            <!-- Evolution -->
-            <div class="mt-7">
-                <h1 class="px-5 font-extrabold text-2xl">Evolution:</h1>
-                <h1 id="pokeEvo" class="px-5 font-extrabold text-2xl">N/A</h1>
-            </div>
-
-
-
-
-
-            
-        </section>
-        <!-- Type, Location, Abilities, Moves, Evolution end-->
-    </main>
+      <!-- Evolution -->
+      <div class="mt-7">
+        <h1 class="px-5 font-extrabold text-2xl">Evolution:</h1>
+        <h1 id="pokeEvo" class="px-5 font-extrabold text-2xl">N/A</h1>
+      </div>
+    </section>
+    <!-- Type, Location, Abilities, Moves, Evolution end-->
 
 
+  </main>
 
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
-    <script src="./scripts/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+  <script  src="./scripts/app.js"></script>
 </body>
 
 </html>

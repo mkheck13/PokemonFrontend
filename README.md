@@ -35,8 +35,11 @@
 
 
 
-Things that still need to be done:
-    - stop the user from getting pokemon past id: 649 / Add a try catch incase user enters something wrong
-    - shiny button function
-    - favorites / local storage
-    - styling / responsivness
+### Things that still need to be done:
+    [x] stop the user from getting pokemon past id: 649 / Add a try catch incase user enters something wrong
+
+    [] shiny button function / works but has has issues, sever clicks needed sometimes and its stuck on shiney sometimes
+
+    [] favorites / local storage
+
+    [] styling / responsivness / have the background change
