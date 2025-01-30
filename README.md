@@ -32,3 +32,11 @@
 **Reviewer:** "Name Here"
 
 **Comments:** "Comments Here"
+
+
+
+Things that still need to be done:
+    - stop the user from getting pokemon past id: 649 / Add a try catch incase user enters something wrong
+    - shiny button function
+    - favorites / local storage
+    - styling / responsivness

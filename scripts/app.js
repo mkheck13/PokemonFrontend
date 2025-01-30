@@ -33,11 +33,13 @@ let sparkleIcon = document.getElementById('sparkleIcon');
 
 // Search Button
 searchBtn.addEventListener('click', async () => {
+    
     userSearch = inputField.value.toLowerCase();
     let pokeData = await PokemonApi(userSearch);
 
-    
-    
+    if(pokeData.id < 650){
+
+         
     // Console Logs
     console.log(pokeData.name);
     console.log(pokeData.id);
@@ -77,16 +79,13 @@ searchBtn.addEventListener('click', async () => {
     const movesArray = pokeData.moves.map(move => move.move.name);
     pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
 
+    }else{
+        alert("Please enter a valid Pokemon name or ID. Gen 1-5 / ID 1-649");
+    }
 
-
-
-
-
-
-
-
-
+  
 });
+
 
 // Random Button
 randomBtn.addEventListener('click', async () => {
@@ -147,6 +146,7 @@ const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
 
+    // Evolution Chain
     const evoGet = await fetch(`${data.species.url}`)
     const evoData = await evoGet.json();
 
@@ -171,13 +171,6 @@ const PokemonApi = async (userSearch) => {
         seeEvo(evoChainData.chain);
         pokeEvo.textContent = `${evoArray.join(' - ')}`;
     }
-
-
-
-
-
-
-
 
     inputField.value = "";
 
