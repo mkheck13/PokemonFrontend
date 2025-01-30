@@ -577,8 +577,14 @@
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
+  .mt-7 {
+    margin-top: calc(var(--spacing) * 7);
+  }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
+  }
+  .mt-14 {
+    margin-top: calc(var(--spacing) * 14);
   }
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
@@ -646,6 +652,9 @@
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
+  .h-24 {
+    height: calc(var(--spacing) * 24);
+  }
   .h-40 {
     height: calc(var(--spacing) * 40);
   }
@@ -658,17 +667,14 @@
   .h-52 {
     height: calc(var(--spacing) * 52);
   }
+  .h-96 {
+    height: calc(var(--spacing) * 96);
+  }
   .h-100 {
     height: calc(var(--spacing) * 100);
   }
   .h-12 {
     height: calc(var(--spacing) * 12);
-  }
-  .h-24 {
-    height: calc(var(--spacing) * 24);
-  }
-  .h-96 {
-    height: calc(var(--spacing) * 96);
   }
   .h-auto {
     height: auto;
@@ -809,6 +815,9 @@
   }
   .overflow-y-auto {
     overflow-y: auto;
+  }
+  .overflow-y-hidden {
+    overflow-y: hidden;
   }
   .overflow-y-scroll {
     overflow-y: scroll;
