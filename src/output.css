@@ -875,6 +875,16 @@
       height: calc(var(--spacing) * 14);
     }
   }
+  .sm\:h-\[100\%\] {
+    @media (width >= 40rem) {
+      height: 100%;
+    }
+  }
+  .sm\:h-\[100\] {
+    @media (width >= 40rem) {
+      height: 100;
+    }
+  }
   .md\:inset-0 {
     @media (width >= 48rem) {
       inset: calc(var(--spacing) * 0);
@@ -898,6 +908,11 @@
   .lg\:mx-1 {
     @media (width >= 64rem) {
       margin-inline: calc(var(--spacing) * 1);
+    }
+  }
+  .lg\:h-96 {
+    @media (width >= 64rem) {
+      height: calc(var(--spacing) * 96);
     }
   }
   .lg\:grid-cols-2 {
