@@ -16,11 +16,6 @@
 
 []  have the background change
 
-[] evo still goes out of range, needs try catch or something
-
-[] resize image once it goes to mobile size
-
-
 **Developer:** Michael Heckerman
 
 **Date Revised:** 1/31/25

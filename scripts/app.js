@@ -1,7 +1,6 @@
 // Import
 import { SaveToLocal, GetLocal, RemoveFromLocal } from "./localstorage.js";
 
-
 // Variables
 
 // Background Change
@@ -29,8 +28,6 @@ let sparkleIcon = document.getElementById('sparkleIcon');
 
 let favDiv = document.getElementById('favDiv');
 
-let shiny = false;
-
 let shinePoke = '';
 let dullPoke = '';
 
@@ -43,24 +40,18 @@ let saved;
 
 // Search Button
 searchBtn.addEventListener('click', async () => {
-    console.log("test");
+
 
     try {
 
 
         let userSearch = inputField.value.toLowerCase();
-        console.log(userSearch);
+
 
         pokeData = await PokemonApi(userSearch);
-        console.log(pokeData.id)
+
 
         if (pokeData.id < 650) {
-
-            // Console Logs
-            // console.log(pokeData.name);
-            // console.log(pokeData.id);
-            // console.log(pokeData.types.map(type => type.type.name));
-            // console.log(pokeData.abilities.map(ability => ability.ability.name));
 
             // name
             pokeName.textContent = `${pokeData.name}`;
@@ -82,7 +73,6 @@ searchBtn.addEventListener('click', async () => {
             // Location
             const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}/encounters`);
             const location = await locationData.json();
-            // console.log(location);
 
             if (location.length > 0) {
                 let randomLocation = Math.floor(Math.random() * location.length);
@@ -143,7 +133,6 @@ randomBtn.addEventListener('click', async () => {
     // Location
     const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNum}/encounters`);
     const location = await locationData.json();
-    //    console.log(location);
 
     if (location.length > 0) {
         let randomLocation = Math.floor(Math.random() * location.length);
@@ -168,7 +157,8 @@ randomBtn.addEventListener('click', async () => {
 const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
-    console.log(data)
+
+    if (data.id < 650){
 
     // setting normal and shiny images
     shinePoke = data.sprites.other["official-artwork"].front_shiny;
@@ -176,9 +166,7 @@ const PokemonApi = async (userSearch) => {
 
     pokeImage.src = dullPoke;
 
-
-
-    // Evolution Chain
+     // Evolution Chain
     const evoGet = await fetch(`${data.species.url}`)
     const evoData = await evoGet.json();
 
@@ -203,6 +191,11 @@ const PokemonApi = async (userSearch) => {
         seeEvo(evoChainData.chain);
         pokeEvo.textContent = `${evoArray.join(' - ')}`;
     }
+
+    }else{
+        console.log("nothing")
+    }
+
 
     inputField.value = "";
 
@@ -237,31 +230,32 @@ const LoadedPoke = async () => {
     pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
     //Shiny caked deer on load
     pokeImage.src = shinePoke;
+
 }
 LoadedPoke();
 
 
 // BackGround Colors
-const backGroundColor = {
-    normal: 'bg-normal',
-    fire: 'bg-fire',
-    water: 'bg-water',
-    electric: 'bg-electric',
-    grass: 'bg-grass',
-    ice: 'bg-ice',
-    fighting: 'bg-fighting',
-    poison: 'bg-poison',
-    ground: 'bg-ground',
-    flying: 'bg-flying',
-    psychic: 'bg-psychic',
-    bug: 'bg-bug',
-    rock: 'bg-rock',
-    ghost: 'bg-ghost',
-    dragon: 'bg-dragon',
-    dark: 'bg-dark',
-    steel: 'bg-steel',
-    fairy: 'bg-fairy',
-};
+// const backGroundColor = {
+//     normal: 'bg-normal',
+//     fire: 'bg-fire',
+//     water: 'bg-water',
+//     electric: 'bg-electric',
+//     grass: 'bg-grass',
+//     ice: 'bg-ice',
+//     fighting: 'bg-fighting',
+//     poison: 'bg-poison',
+//     ground: 'bg-ground',
+//     flying: 'bg-flying',
+//     psychic: 'bg-psychic',
+//     bug: 'bg-bug',
+//     rock: 'bg-rock',
+//     ghost: 'bg-ghost',
+//     dragon: 'bg-dragon',
+//     dark: 'bg-dark',
+//     steel: 'bg-steel',
+//     fairy: 'bg-fairy',
+// };
 
 // Heart Button
 favIcon.addEventListener('click', () => {
