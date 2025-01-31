@@ -80,21 +80,17 @@ searchBtn.addEventListener('click', async () => {
             const movesArray = pokeData.moves.map(move => move.move.name);
             pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
 
-
             // Shiny Button NEEDS WORK!!!
-            // shinyBtn.addEventListener('click', async () => {
-            //     console.log("shiny button clicked");
+            shinyBtn.addEventListener('click', async () => {
+                console.log("shiny button clicked");
 
-            //     if (shiny) {
-            //         pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
-            //     } else {
-            //         pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
-            //     }
-            //     shiny = !shiny;
-            // });
-
-
-
+                if (shiny) {
+                    pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
+                } else {
+                    pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+                }
+                shiny = !shiny;
+            });
 
         } else {
             alert("Please enter a valid Pokemon name or ID. Gen 1-5 / ID 1-649");
@@ -161,22 +157,13 @@ randomBtn.addEventListener('click', async () => {
 
 });
 
-// Shiny Button NEEDS WORK!!!
-// shinyBtn.addEventListener('click', async () => {
-//     console.log("shiny button clicked");
-
-//     if(shiny){
-//         pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
-//     }else{
-//         pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
-//     }
-//     shiny = !shiny;
-// });
 
 // Fetch Pokemon Data
 const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
+
+
 
     // Evolution Chain
     const evoGet = await fetch(`${data.species.url}`)
@@ -210,6 +197,25 @@ const PokemonApi = async (userSearch) => {
 };
 
 
-
-
+// BackGround Colors
+const backGroundColor = {
+    normal: 'bg-normal',
+    fire: 'bg-fire',
+    water: 'bg-water',
+    electric: 'bg-electric',
+    grass: 'bg-grass',
+    ice: 'bg-ice',
+    fighting: 'bg-fighting',
+    poison: 'bg-poison',
+    ground: 'bg-ground',
+    flying: 'bg-flying',
+    psychic: 'bg-psychic',
+    bug: 'bg-bug',
+    rock: 'bg-rock',
+    ghost: 'bg-ghost',
+    dragon: 'bg-dragon',
+    dark: 'bg-dark',
+    steel: 'bg-steel',
+    fairy: 'bg-fairy',
+};
 

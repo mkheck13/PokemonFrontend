@@ -10,6 +10,15 @@
 - Have the ability to save a pokemon to a favorites menu / list using local storage.
 - Must be responsive on tablet and mobile.
 
+### Things that still need to be done:
+[] shiny button: works but has has issues, several clicks needed sometimes and its stuck on shiney sometimes
+
+[] favorites / local storage
+
+[] styling / responsivness / have the background change
+
+[] have a pokemon on load
+
 
 **Developer:** Michael Heckerman
 
@@ -24,7 +33,7 @@
 
 [Pokemon API](https://pokeapi.co/)
 
-[Vercel]()
+[Vercel](https://pokemon-frontend-eta.vercel.app/)
 
 
 ## FeedBack/Peer Review: 
@@ -32,14 +41,3 @@
 **Reviewer:** "Name Here"
 
 **Comments:** "Comments Here"
-
-
-
-### Things that still need to be done:
-    [x] stop the user from getting pokemon past id: 649 / Add a try catch incase user enters something wrong
-
-    [] shiny button function / works but has has issues, sever clicks needed sometimes and its stuck on shiney sometimes
-
-    [] favorites / local storage
-
-    [] styling / responsivness / have the background change
