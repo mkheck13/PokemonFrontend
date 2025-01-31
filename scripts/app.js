@@ -31,6 +31,11 @@ let favDiv = document.getElementById('favDiv');
 
 let shiny = false;
 
+let shinePoke = '';
+let dullPoke = '';
+
+let pokeData;
+
 // let userSearch = "mew";
 
 
@@ -45,7 +50,7 @@ searchBtn.addEventListener('click', async () => {
         let userSearch = inputField.value.toLowerCase();
         console.log(userSearch);
         
-        let pokeData = await PokemonApi(userSearch);
+        pokeData = await PokemonApi(userSearch);
         console.log(pokeData.id)
 
         if (pokeData.id < 650) {
@@ -89,18 +94,6 @@ searchBtn.addEventListener('click', async () => {
             const movesArray = pokeData.moves.map(move => move.move.name);
             pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
 
-            // Shiny Button NEEDS WORK!!!
-            shinyBtn.addEventListener('click', async () => {
-                console.log("shiny button clicked");
-
-                if (shiny) {
-                    pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
-                } else {
-                    pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
-                }
-                shiny = !shiny;
-            });
-
         } else {
             alert("Please enter a valid Pokemon name or ID. Gen 1-5 / ID 1-649");
         }
@@ -110,6 +103,15 @@ searchBtn.addEventListener('click', async () => {
         inputField.value = "";
     }
 
+});
+
+// Shiney button
+shinyBtn.addEventListener("click", () => {
+    if(pokeImage.src == dullPoke){
+        pokeImage.src = shinePoke;
+    }else{
+        pokeImage.src = dullPoke;
+    }
 });
 
 
@@ -152,19 +154,8 @@ randomBtn.addEventListener('click', async () => {
     const movesArray = pokeData.moves.map(move => move.move.name);
     pokeMoves.textContent = `${movesArray.join(', ')}`;
 
-    // Shiny Button NEEDS WORK!!!
-    shinyBtn.addEventListener('click', async () => {
-        console.log("shiny button clicked");
-
-        if (shiny) {
-            pokeImage.src = pokeData.sprites.other["official-artwork"].front_shiny;
-        } else {
-            pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
-        }
-        shiny = !shiny;
-    });
-
 });
+
 
 
 // Fetch Pokemon Data
@@ -172,6 +163,12 @@ const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
     console.log(data)
+
+    // setting normal and shiny images
+    shinePoke = data.sprites.other["official-artwork"].front_shiny;
+    dullPoke = data.sprites.other["official-artwork"].front_default;
+
+    pokeImage.src = dullPoke;
 
 
 
@@ -237,3 +234,42 @@ const backGroundColor = {
     fairy: 'bg-fairy',
 };
 
+// Heart Button
+favIcon.addEventListener('click', () => {
+    const favData = localStorage.getItem("favorited");
+
+    if(favData && favData.includes(userSearch.name)){
+        saved = true;
+        RemoveFromLocal(userSearch.name);
+    }else{
+        saved = false;
+        SaveToLocal(userSearch.name)
+    }
+});
+
+
+// Favorite Modal
+favBtn.addEventListener('click', () => {
+    let favorites = GetLocal();
+
+    favDiv.textContent = "";
+
+    favorites.map(favPoke => {
+
+        let div = document.createElement('div');
+        div.className = "grid grid-col-2 my-5 py-1 ps-2 rounded-2xl items-center"
+
+        let p = document.createElement('p');
+        p.textContent = favPoke.charAt(0).toUpperCase() + favPoke.slice(1);
+        p.className = "col-span-1 text-blue-800 text-3xl";
+
+        let span = document.createElement('span');
+        span.textContent = "Remove"
+        span.className = "col-span-1 text-center text-red-700"
+
+        span.addEventListener('click', () => {
+            RemoveFromLocal(favPoke);
+            div.remove();
+        })
+    })
+});

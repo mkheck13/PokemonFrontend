@@ -11,13 +11,14 @@
 - Must be responsive on tablet and mobile.
 
 ### Things that still need to be done:
-[] shiny button: works but has has issues, several clicks needed sometimes and its stuck on shiney sometimes
 
 [] favorites / local storage
 
-[] styling / responsivness / have the background change
+[]  have the background change
 
 [] have a pokemon on load
+
+[] evo still goes out of range, needs try catch or something
 
 
 **Developer:** Michael Heckerman
@@ -34,6 +35,9 @@
 [Pokemon API](https://pokeapi.co/)
 
 [Vercel](https://pokemon-frontend-eta.vercel.app/)
+
+## Shout Outs:
+**Brock Spacek** For helping me with my shiny button issues.
 
 
 ## FeedBack/Peer Review: 
