@@ -35,6 +35,7 @@ let shinePoke = '';
 let dullPoke = '';
 
 let pokeData;
+let saved;
 
 // let userSearch = "mew";
 
@@ -68,8 +69,12 @@ searchBtn.addEventListener('click', async () => {
             pokeId.textContent = `# ${pokeData.id}`;
 
             // Image
-            pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
-
+            if(pokeData.id == "143"){
+                pokeImage.src = "../assets/superChunk.jpg";
+            }else{
+                pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
+            }
+            
             // Type
             const typeArray = pokeData.types.map(type => type.type.name);
             pokeType.textContent = `Type: ${typeArray.join(', ')}`;
@@ -262,12 +267,12 @@ const backGroundColor = {
 favIcon.addEventListener('click', () => {
     const favData = localStorage.getItem("favorited");
 
-    if (favData && favData.includes(userSearch.name)) {
+    if (favData && favData.includes(pokeData.name)) {
         saved = true;
-        RemoveFromLocal(userSearch.name);
+        RemoveFromLocal(pokeData.name);
     } else {
         saved = false;
-        SaveToLocal(userSearch.name)
+        SaveToLocal(pokeData.name)
     }
 });
 
