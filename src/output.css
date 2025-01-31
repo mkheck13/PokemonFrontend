@@ -545,6 +545,9 @@
   .col-span-1 {
     grid-column: span 1 / span 1;
   }
+  .m-3 {
+    margin: calc(var(--spacing) * 3);
+  }
   .m-10 {
     margin: calc(var(--spacing) * 10);
   }
@@ -818,6 +821,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .text-black {
+    color: var(--color-black);
   }
   .text-blue-800 {
     color: var(--color-blue-800);

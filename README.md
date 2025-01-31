@@ -14,8 +14,6 @@
 
 [] favorites / local storage
 
-[]  have the background change
-
 **Developer:** Michael Heckerman
 
 **Date Revised:** 1/31/25

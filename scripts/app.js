@@ -3,9 +3,6 @@ import { SaveToLocal, GetLocal, RemoveFromLocal } from "./localstorage.js";
 
 // Variables
 
-// Background Change
-let backgroundChange = document.getElementById('backgroundChange');
-
 // Pokemon ID's
 let pokeName = document.getElementById('pokeName');
 let pokeId = document.getElementById('pokeId');
@@ -32,7 +29,9 @@ let shinePoke = '';
 let dullPoke = '';
 
 let pokeData;
-let saved;
+
+let saved = false;
+let saveArr = {};
 
 // let userSearch = "mew";
 
@@ -60,12 +59,12 @@ searchBtn.addEventListener('click', async () => {
             pokeId.textContent = `# ${pokeData.id}`;
 
             // Image
-            if(pokeData.id == "143"){
+            if (pokeData.id == "143") {
                 pokeImage.src = "../assets/superChunk.jpg";
-            }else{
+            } else {
                 pokeImage.src = pokeData.sprites.other["official-artwork"].front_default;
             }
-            
+
             // Type
             const typeArray = pokeData.types.map(type => type.type.name);
             pokeType.textContent = `Type: ${typeArray.join(', ')}`;
@@ -158,46 +157,48 @@ const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
 
-    if (data.id < 650){
+    if (data.id < 650) {
 
-    // setting normal and shiny images
-    shinePoke = data.sprites.other["official-artwork"].front_shiny;
-    dullPoke = data.sprites.other["official-artwork"].front_default;
+        // setting normal and shiny images
+        shinePoke = data.sprites.other["official-artwork"].front_shiny;
+        dullPoke = data.sprites.other["official-artwork"].front_default;
 
-    pokeImage.src = dullPoke;
+        pokeImage.src = dullPoke;
 
-     // Evolution Chain
-    const evoGet = await fetch(`${data.species.url}`)
-    const evoData = await evoGet.json();
+        // Evolution Chain
+        const evoGet = await fetch(`${data.species.url}`)
+        const evoData = await evoGet.json();
 
-    const evoChain = await fetch(`${evoData.evolution_chain.url}`);
-    const evoChainData = await evoChain.json();
+        const evoChain = await fetch(`${evoData.evolution_chain.url}`);
+        const evoChainData = await evoChain.json();
 
-    if (evoChainData.chain.evolves_to.length === 0) {
-        pokeEvo.textContent = "No Evolutions";
-    } else {
-        const evoArray = [evoChainData.chain.species.name];
+        if (evoChainData.chain.evolves_to.length === 0) {
+            pokeEvo.textContent = "No Evolutions";
+        } else {
+            const evoArray = [evoChainData.chain.species.name];
 
-        const seeEvo = chain => {
-            if (chain.evolves_to.length === 0) {
-                return;
-            } else {
-                chain.evolves_to.forEach(evo => {
-                    evoArray.push(evo.species.name);
-                    seeEvo(evo);
-                })
+            const seeEvo = chain => {
+                if (chain.evolves_to.length === 0) {
+                    return;
+                } else {
+                    chain.evolves_to.forEach(evo => {
+                        evoArray.push(evo.species.name);
+                        seeEvo(evo);
+                    })
+                }
             }
+            seeEvo(evoChainData.chain);
+            pokeEvo.textContent = `${evoArray.join(' - ')}`;
         }
-        seeEvo(evoChainData.chain);
-        pokeEvo.textContent = `${evoArray.join(' - ')}`;
-    }
 
-    }else{
+    } else {
         console.log("nothing")
     }
 
 
     inputField.value = "";
+
+    showFavs();
 
     return data;
 };
@@ -235,64 +236,51 @@ const LoadedPoke = async () => {
 LoadedPoke();
 
 
-// BackGround Colors
-// const backGroundColor = {
-//     normal: 'bg-normal',
-//     fire: 'bg-fire',
-//     water: 'bg-water',
-//     electric: 'bg-electric',
-//     grass: 'bg-grass',
-//     ice: 'bg-ice',
-//     fighting: 'bg-fighting',
-//     poison: 'bg-poison',
-//     ground: 'bg-ground',
-//     flying: 'bg-flying',
-//     psychic: 'bg-psychic',
-//     bug: 'bg-bug',
-//     rock: 'bg-rock',
-//     ghost: 'bg-ghost',
-//     dragon: 'bg-dragon',
-//     dark: 'bg-dark',
-//     steel: 'bg-steel',
-//     fairy: 'bg-fairy',
-// };
+// Local storage
+function isSaved(pokeName) {
+    const favorites = GetLocal();
+    return favorites.includes(pokeName);
+};
 
 // Heart Button
 favIcon.addEventListener('click', () => {
-    const favData = localStorage.getItem("favorited");
+    if (!isSaved(pokeName)) {
+        SaveToLocal(pokeName);
 
-    if (favData && favData.includes(pokeData.name)) {
-        saved = true;
-        RemoveFromLocal(pokeData.name);
+        console.log("saved")
     } else {
-        saved = false;
-        SaveToLocal(pokeData.name)
+        RemoveFromLocal(pokeName);
+
+        console.log("un-saved")
     }
+    showFavs();
 });
 
+// Displaying the Favorite Data
+function showFavs() {
+    const storeFavs = GetLocal();
+    favDiv.innerHTML = '';
 
-// Favorite Modal
-favBtn.addEventListener('click', () => {
-    let favorites = GetLocal();
+    for (const pokemon of storeFavs) {
+        const p = document.createElement('p');
+        const remove = document.createElement('button');
+        remove.innerText = "X";
+        remove.className = "m-3";
 
-    favDiv.textContent = "";
+        remove.addEventListener('click', () => {
+            RemoveFromLocal(pokemon);
 
-    favorites.map(favPoke => {
+            if (pokemon === pokeName) {
+                console.log("in here")
+            }
+            showFavs();
+        });
 
-        let div = document.createElement('div');
-        div.className = "grid grid-col-2 my-5 py-1 ps-2 rounded-2xl items-center"
+        p.className = "text-center text-2xl text-black";
+        p.textContent = pokemon;
+        p.appendChild(remove);
+        favDiv.appendChild(p);
+    }
+};
 
-        let p = document.createElement('p');
-        p.textContent = favPoke.charAt(0).toUpperCase() + favPoke.slice(1);
-        p.className = "col-span-1 text-blue-800 text-3xl";
-
-        let span = document.createElement('span');
-        span.textContent = "Remove"
-        span.className = "col-span-1 text-center text-red-700"
-
-        span.addEventListener('click', () => {
-            RemoveFromLocal(favPoke);
-            div.remove();
-        })
-    })
-});
+// showFavs();
