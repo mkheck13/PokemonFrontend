@@ -1,3 +1,6 @@
+// Import
+import { SaveToLocal, GetLocal, RemoveFromLocal } from "./localstorage.js";
+
 
 // Variables
 
@@ -24,20 +27,26 @@ let favIcon = document.getElementById('favIcon');
 let shinyBtn = document.getElementById('shinyBtn');
 let sparkleIcon = document.getElementById('sparkleIcon');
 
+let favDiv = document.getElementById('favDiv');
+
 let shiny = false;
 
 // let userSearch = "mew";
 
 
 
-
 // Search Button
 searchBtn.addEventListener('click', async () => {
-
+        console.log("test");
+        
     try {
 
-        userSearch = inputField.value.toLowerCase();
+
+        let userSearch = inputField.value.toLowerCase();
+        console.log(userSearch);
+        
         let pokeData = await PokemonApi(userSearch);
+        console.log(pokeData.id)
 
         if (pokeData.id < 650) {
 
@@ -162,6 +171,7 @@ randomBtn.addEventListener('click', async () => {
 const PokemonApi = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     const data = await promise.json();
+    console.log(data)
 
 
 
@@ -195,6 +205,14 @@ const PokemonApi = async (userSearch) => {
 
     return data;
 };
+
+
+// OnLoad
+// const OnLoad = async() => {
+
+//     pokeName.textContent = `${pokeData.name}`;
+// }
+
 
 
 // BackGround Colors
