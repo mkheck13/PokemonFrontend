@@ -34,6 +34,6 @@
 
 ## FeedBack/Peer Review: 
 
-**Reviewer:** "Name Here"
+**Reviewer:** Kassandra Spacek
 
-**Comments:** "Comments Here"
+**Comments:** Everything looks and works nicely. Except for the favoites list when you check it it only shows the objects. It is also a bit hard to tell which things you can click I would suggest adding cursor-pointer to see it. 
