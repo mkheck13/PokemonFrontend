@@ -42,14 +42,14 @@ let pokeData;
 
 // Search Button
 searchBtn.addEventListener('click', async () => {
-        console.log("test");
-        
+    console.log("test");
+
     try {
 
 
         let userSearch = inputField.value.toLowerCase();
         console.log(userSearch);
-        
+
         pokeData = await PokemonApi(userSearch);
         console.log(pokeData.id)
 
@@ -105,11 +105,12 @@ searchBtn.addEventListener('click', async () => {
 
 });
 
+
 // Shiney button
 shinyBtn.addEventListener("click", () => {
-    if(pokeImage.src == dullPoke){
+    if (pokeImage.src == dullPoke) {
         pokeImage.src = shinePoke;
-    }else{
+    } else {
         pokeImage.src = dullPoke;
     }
 });
@@ -204,12 +205,35 @@ const PokemonApi = async (userSearch) => {
 };
 
 
-// OnLoad
-// const OnLoad = async() => {
-
-//     pokeName.textContent = `${pokeData.name}`;
-// }
-
+// Pokemon On Load
+const LoadedPoke = async () => {
+    pokeData = await PokemonApi("234");
+    // name
+    pokeName.textContent = `${pokeData.name}`;
+    // Id
+    pokeId.textContent = `# ${pokeData.id}`;
+    // Type
+    const typeArray = pokeData.types.map(type => type.type.name);
+    pokeType.textContent = `Type: ${typeArray.join(', ')}`;
+    // Location
+    const locationData = await fetch(`https://pokeapi.co/api/v2/pokemon/234/encounters`);
+    const location = await locationData.json();
+    if (location.length > 0) {
+        let randomLocation = Math.floor(Math.random() * location.length);
+        pokeLocation.textContent = `Location: ${(location[randomLocation].location_area.name).replaceAll("-", " ")}`;
+    } else {
+        pokeLocation.textContent = "Location: N/A";
+    };
+    // Abilities
+    const abilityArray = pokeData.abilities.map(ability => ability.ability.name);
+    pokeAbilities.textContent = `Abilities: ${abilityArray.join(', ')}`;
+    // Moves
+    const movesArray = pokeData.moves.map(move => move.move.name);
+    pokeMoves.textContent = `Moves: ${movesArray.join(', ')}`;
+    //Shiny caked deer on load
+    pokeImage.src = shinePoke;
+}
+LoadedPoke();
 
 
 // BackGround Colors
@@ -238,10 +262,10 @@ const backGroundColor = {
 favIcon.addEventListener('click', () => {
     const favData = localStorage.getItem("favorited");
 
-    if(favData && favData.includes(userSearch.name)){
+    if (favData && favData.includes(userSearch.name)) {
         saved = true;
         RemoveFromLocal(userSearch.name);
-    }else{
+    } else {
         saved = false;
         SaveToLocal(userSearch.name)
     }

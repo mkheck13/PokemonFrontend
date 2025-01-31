@@ -16,14 +16,12 @@
 
 []  have the background change
 
-[] have a pokemon on load
-
 [] evo still goes out of range, needs try catch or something
 
 
 **Developer:** Michael Heckerman
 
-**Date Revised:** 1/30/25
+**Date Revised:** 1/31/25
 
 
 ## Link(s):
@@ -37,8 +35,7 @@
 [Vercel](https://pokemon-frontend-eta.vercel.app/)
 
 ## Shout Outs:
-**Brock Spacek** For helping me with my shiny button issues.
-
+**Brock Spacek:** For helping me with my shiny button issues.
 
 ## FeedBack/Peer Review: 
 
