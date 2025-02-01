@@ -4,7 +4,7 @@ const SaveToLocal = (pokeSave) => {
 
     let favorites = GetLocal();
 
-    if(!favorites.includes(pokeSave)){
+    if (!favorites.includes(pokeSave)) {
         favorites.push(pokeSave);
     }
 
@@ -15,7 +15,7 @@ const SaveToLocal = (pokeSave) => {
 const GetLocal = () => {
     let localStorageData = localStorage.getItem("favorited");
 
-    if(localStorageData === null){
+    if (localStorageData === null) {
         return [];
     }
     return JSON.parse(localStorageData);
@@ -26,8 +26,13 @@ const GetLocal = () => {
 const RemoveFromLocal = (pokeSave) => {
     let favorites = GetLocal();
     let pokeIndex = favorites.indexOf(pokeSave);
-    favorites.splice(pokeIndex, 1);
-    localStorage.setItem("favorited", JSON.stringify(favorites));
+    // favorites.splice(pokeIndex, 1);
+    // localStorage.setItem("favorited", JSON.stringify(favorites));
+
+    if (pokeIndex !== -1) {  // Only remove if the item exists
+        favorites.splice(pokeIndex, 1);
+        localStorage.setItem("favorited", JSON.stringify(favorites));
+    }
 
 };
 

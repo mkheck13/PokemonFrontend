@@ -662,6 +662,9 @@
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .resize {
     resize: both;
   }
@@ -884,11 +887,6 @@
   .sm\:h-\[100\%\] {
     @media (width >= 40rem) {
       height: 100%;
-    }
-  }
-  .sm\:h-\[100\] {
-    @media (width >= 40rem) {
-      height: 100;
     }
   }
   .md\:inset-0 {

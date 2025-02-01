@@ -244,14 +244,13 @@ function isSaved(pokeName) {
 
 // Heart Button
 favIcon.addEventListener('click', () => {
-    if (!isSaved(pokeName)) {
-        SaveToLocal(pokeName);
+    const pokemonName = pokeName.textContent;
+    if (!isSaved(pokemonName)) {
+        SaveToLocal(pokemonName);
 
-        console.log("saved")
     } else {
-        RemoveFromLocal(pokeName);
+        RemoveFromLocal(pokemonName);
 
-        console.log("un-saved")
     }
     showFavs();
 });
@@ -259,6 +258,7 @@ favIcon.addEventListener('click', () => {
 // Displaying the Favorite Data
 function showFavs() {
     const storeFavs = GetLocal();
+
     favDiv.innerHTML = '';
 
     for (const pokemon of storeFavs) {
