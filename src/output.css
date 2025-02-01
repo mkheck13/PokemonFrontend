@@ -889,6 +889,11 @@
       height: 100%;
     }
   }
+  .sm\:h-\[100\] {
+    @media (width >= 40rem) {
+      height: 100;
+    }
+  }
   .md\:inset-0 {
     @media (width >= 48rem) {
       inset: calc(var(--spacing) * 0);
