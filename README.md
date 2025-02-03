@@ -37,3 +37,5 @@
 **Reviewer:** Kassandra Spacek
 
 **Comments:** Everything looks and works nicely. Except for the favoites list when you check it it only shows the objects. It is also a bit hard to tell which things you can click I would suggest adding cursor-pointer to see it. 
+
+**Update:** Favorites now returns the pokemon that is saved into favorites modal. Added cursor-pointer to areas that are clickable. Still want to work on the favorites menu.

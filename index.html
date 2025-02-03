@@ -22,18 +22,18 @@
     <!-- search bar, image, name, favorite button, shiny button start -->
     <section class="bg-gray-500 w-[1oo%] h-auto rounded-lg p-10 md:min-w-10">
       <div class="bg-white bg-opacity-50 flex w-[100%] h-16 sm:h-14 items-center rounded-lg mb-5">
-        <button id="searchBtn" class="px-1 py-1">
+        <button id="searchBtn" class="px-1 py-1 cursor-pointer">
           <img class="h-7" src="./assets/faSearch.png" alt="search icon" />
         </button>
         <input id="inputField" class="text-l font-medium border-none w-full flex-1 px-4 bg-transparent outline-none"
           type="text" placeholder="Pokémon name / number" />
 
-        <button id="randomBtn" class="mx-2 lg:mx-1 xl:mx-2 px-1 py-1">
+        <button id="randomBtn" class="mx-2 lg:mx-1 xl:mx-2 px-1 py-1 cursor-pointer">
           <img class="h-7" src="./assets/faRandom.png" alt="random icon" />
         </button>
       </div>
       <div class="flex justify-center">
-        <button id="favIcon" class="h-7">
+        <button id="favIcon" class="h-7 cursor-pointer">
           <img class="h-10" src="./assets/HeartEmpty.png" alt="heart icon" />
         </button>
         <h1 id="pokeName" class="px-5 font-extrabold text-2xl"></h1>
@@ -45,12 +45,12 @@
       <div class="flex justify-between items-end mt-24">
         <!-- Modal toggle -->
         <button id="favBtn" data-modal-target="default-modal" data-modal-toggle="default-modal"
-          class="block text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+          class="block text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 cursor-pointer"
           type="button">
           Favorites
         </button>
 
-        <button id="shinyBtn" class="pb-5">
+        <button id="shinyBtn" class="pb-5 cursor-pointer">
           <img id=" sparkleIcon" src=" ./assets/Sparkle.png" alt="shiny icon" />
         </button>
       </div>
